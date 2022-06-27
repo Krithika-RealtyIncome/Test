@@ -1,0 +1,489 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Sharepoint_Upload" this:Sharepoint_Upload.in_OutputFilePath="D:\Users\vendor-kmahalingam\OneDrive\Documents\UiPath\PCR_RE_UAT_3_28_2022\PCR_RE_Workflow\Data\Output\Repairs (2).xlsx" this:Sharepoint_Upload.in_SharepointFolder="Bot_Output" this:Sharepoint_Upload.in_SharepointUrl="https://realtyincomeo365.sharepoint.com/sites/PCRSummaryofCosts/" this:Sharepoint_Upload.in_downloadsFolder="Data\Temp" this:Sharepoint_Upload.in_ProjectNum="22-370748" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mg="clr-namespace:Microsoft.Graph;assembly=Microsoft.Graph" xmlns:mg1="clr-namespace:Microsoft.Graph;assembly=Microsoft.Graph.Core" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:si="clr-namespace:System.IO;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:umaf="clr-namespace:UiPath.MicrosoftOffice365.Activities.Files;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umafc="clr-namespace:UiPath.MicrosoftOffice365.Activities.Files.Contracts;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_OutputFilePath" Type="InArgument(x:String)" />
+    <x:Property Name="in_SharepointFolder" Type="InArgument(x:String)" />
+    <x:Property Name="in_SharepointUrl" Type="InArgument(x:String)" />
+    <x:Property Name="in_downloadsFolder" Type="InArgument(x:String)" />
+    <x:Property Name="in_ProjectNum" Type="InArgument(x:String)" />
+    <x:Property Name="out_ProjSpFolderPath" Type="OutArgument(mg:DriveItem)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1424,7274</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Sharepoint_Upload_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="44">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Files.Contracts</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Files</x:String>
+      <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities</x:String>
+      <x:String>Microsoft.Graph</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Enums</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPathTeam.SharePoint.Activities.Libraries</x:String>
+      <x:String>UiPathTeam.SharePoint.Activities</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="40">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Graph</AssemblyReference>
+      <AssemblyReference>Microsoft.Graph.Core</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365</AssemblyReference>
+      <AssemblyReference>UiPathTeam.SharePoint.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities.Design</AssemblyReference>
+      <AssemblyReference>OfficeDevPnP.Core</AssemblyReference>
+      <AssemblyReference>UiPathTeam.SharePoint</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Sharepoint_Upload" sap:VirtualizedContainerService.HintSize="1434,7209" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="strSharepointFileLink" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <umaf:UseDriveCard ConnectionAccountName="{x:Null}" ConnectionId="{x:Null}" ContinueOnError="{x:Null}" Timeout="{x:Null}" Account="vendor-kmahalingam@realtyincome.com" DisplayName="Use OneDrive &amp; SharePoint" EmailAddress="vendor-kmahalingam@realtyincome.com" sap:VirtualizedContainerService.HintSize="1392,2679" sap2010:WorkflowViewState.IdRef="UseDriveCard_1" UseConnectionService="False">
+      <umaf:UseDriveCard.ApplicationId>
+        <InArgument x:TypeArguments="x:String">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+      </umaf:UseDriveCard.ApplicationId>
+      <umaf:UseDriveCard.Body>
+        <ActivityAction x:TypeArguments="umafc:IDriveMetadata">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="umafc:IDriveMetadata" Name="DriveLocation" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1015,2542" sap2010:WorkflowViewState.IdRef="Sequence_12">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="mg:DriveItem" Name="spFolderPath" />
+              <Variable x:TypeArguments="mg:DriveItem" Name="out_OutFileSummarySharepointFile" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <umaf:FindFilesAndFolders DriveName="{x:Null}" Results="{x:Null}" Subfolder="{x:Null}" DisplayName="Find Files And Folders" DriveMetadata="[DriveLocation]" First="[spFolderPath]" sap:VirtualizedContainerService.HintSize="973,85" sap2010:WorkflowViewState.IdRef="FindFilesAndFolders_1" Query="[in_SharepointFolder]" SiteUrl="[in_SharepointUrl]" />
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="973,420" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+              <TryCatch.Try>
+                <umaf:CreateFolder DisplayName="Create Folder" DriveMetadata="[DriveLocation]" Folder="[out_ProjSpFolderPath]" sap:VirtualizedContainerService.HintSize="334,193" sap2010:WorkflowViewState.IdRef="CreateFolder_1" Name="[in_ProjectNum]" ParentItem="[spFolderPath]" />
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="mg1:ServiceException" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="mg1:ServiceException">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="mg1:ServiceException" Name="exception" />
+                    </ActivityAction.Argument>
+                    <umaf:FindFilesAndFolders DriveName="{x:Null}" Results="{x:Null}" Subfolder="{x:Null}" DisplayName="Find Files And Folders" DriveMetadata="[DriveLocation]" First="[out_ProjSpFolderPath]" sap:VirtualizedContainerService.HintSize="334,85" sap2010:WorkflowViewState.IdRef="FindFilesAndFolders_2" Query="[in_ProjectNum]" SiteUrl="[in_SharepointUrl]" />
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="973,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;SP Project Folder Link: &quot; + out_ProjSpFolderPath.WebUrl]" />
+            <umaf:UploadFile CloudFileName="{x:Null}" Metadata="{x:Null}" ConflictBehavior="Replace" Destination="[out_ProjSpFolderPath]" DisplayName="Upload File" DriveMetadata="[DriveLocation]" sap:VirtualizedContainerService.HintSize="973,308" sap2010:WorkflowViewState.IdRef="UploadFile_1" LocalFilePath="[in_OutputFilePath]" Result="[out_OutFileSummarySharepointFile]" />
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="973,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;SP Project Output File Summary Link: &quot; + out_OutFileSummarySharepointFile.WebUrl]" />
+            <ui:ForEachFileX DisplayName="For Each File in Folder" Folder="[in_downloadsFolder]" sap:VirtualizedContainerService.HintSize="973,1255" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="NameAscFirst">
+              <ui:ForEachFileX.Body>
+                <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
+                  <ActivityAction.Argument1>
+                    <DelegateInArgument x:TypeArguments="si:FileInfo" Name="CurrentFile" />
+                  </ActivityAction.Argument1>
+                  <ActivityAction.Argument2>
+                    <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+                  </ActivityAction.Argument2>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="939,1026" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If Condition="[Not CurrentFile.Name.ToUpper.Contains(&quot;DASHBOARD&quot;)]" sap:VirtualizedContainerService.HintSize="897,803" sap2010:WorkflowViewState.IdRef="If_1">
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="426,646" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="mg:DriveItem" Name="spFileUpload" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <umaf:UploadFile CloudFileName="{x:Null}" Metadata="{x:Null}" ConflictBehavior="Replace" Destination="[out_ProjSpFolderPath]" DisplayName="Upload File" DriveMetadata="[DriveLocation]" sap:VirtualizedContainerService.HintSize="384,304" sap2010:WorkflowViewState.IdRef="UploadFile_2" LocalFilePath="[CurrentFile.FullName]" Result="[spFileUpload]" />
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="384,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Message="[&quot;Uploaded project file: &quot; + currentFile.Name]" />
+                          <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="384,79" sap2010:WorkflowViewState.IdRef="DeleteFileX_1" Path="[CurrentFile.FullName]" />
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap:VirtualizedContainerService.HintSize="426,171" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="384,79" sap2010:WorkflowViewState.IdRef="DeleteFileX_2" Path="[CurrentFile.FullName]" />
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="897,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Files saved on sharepoint&quot;]" />
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEachFileX.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ForEachFileX>
+          </Sequence>
+        </ActivityAction>
+      </umaf:UseDriveCard.Body>
+      <umaf:UseDriveCard.TenantId>
+        <InArgument x:TypeArguments="x:String">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+      </umaf:UseDriveCard.TenantId>
+    </umaf:UseDriveCard>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1392,4398" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="1356,4320" sap2010:WorkflowViewState.IdRef="Sequence_14">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: PCR Review - Bot_Output - All Documents" sap:VirtualizedContainerService.HintSize="1314,4228" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="9fb67085-17b2-478e-bad9-9d7798faed3c" Version="V1">
+            <uix:NApplicationCard.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1280,4012" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NCheckState Exists="{x:Null}" DisplayName="Check App State 'SharePoint'" sap:VirtualizedContainerService.HintSize="1238,3918" sap2010:WorkflowViewState.IdRef="NCheckState_1" Version="V1">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="934,3702" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NClick ClickType="Single" DisplayName="Click 'Upload'" sap:VirtualizedContainerService.HintSize="892,156" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9fb67085-17b2-478e-bad9-9d7798faed3c" Version="V1">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable BrowserURL="https://realtyincomeo365.sharepoint.com/sites/PCRSummaryofCosts/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x0120007D2F6B3E15B74048B0D9BC6ED7D9A210&amp;id=%2Fsites%2FPCRSummaryofCosts%2FShared%20Documents%2FGeneral%2FBot%5FOutput&amp;viewid=5fb7bf38%2D8d66%2D42db%2Dad9b%2D83d8fdf176d3" DesignTimeRectangle="431, 274, 105, 32" FriendlyName="'Upload'" FullSelectorArgument="&lt;webctrl parentid='appRoot' parentname='Upload' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='appRoot' parentname='Upload' tag='SPAN' type='' aaname='' check:text='Upload' /&gt;" Guid="889400b5-7de0-49b9-a337-172b8e401440" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAG0AAAAkCAYAAACDr7TyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJnSURBVGhD7ZY/SwMxFMDd/RR+g+pXcqtDV5ciiBa0HR2cnHTq1OIiuDg6OLSgCAqKk7SoWCoFHZ73ktxdkrv+SVLbvvp+cPTeJXcp+eUlbwUYcrA0grA0grA0grA0grA0grA0grA0grA0grA0grhLe63DaWkVjkdd+3Xoqu7M9OFMI8hUpP18qxtmJgRLe78uw8l2GVpv6oE3LaiuF6GZ2Ve70CwWoNpS4Thah7BRbPzZ9tyuFmCrMd/NP0iaEFZai86x6AoWt3zSXDYgl77e0mSG1eD+KSpMosLjpV0LzLglk/ZxBbuVJjz2VTyM/jOcVQ7g4kPFE+AlrXeDgmpw+xkFWE2qavErSNyE0mIp+LtekJcuKSNNvp/0zYyB42rtlvBuo2i0NV22x84llEeJE8L24Lyj4glxlvZzd5QKQzRpiBR3BA/OxYmDNJxALfVw9SexIU0J09NUvH8IbRVinDZLgXEshNkLImp3OtOGifMUhnhk2gB6sTDEkob0PgfqzgXHTFOhoNuArViE3q4/T7C+Z5Fuf/n9vAoRW1yAMCSoEBHkSPNjlDTteZ408W6OtNy+9sSrbIy3wCST8v+PlzQkFtcJE4YskLRhGWBNXnCmyYmX42THHJ1p8pmXNATFbe4ECUMWSBrOMR765iTjJGbPJH0yrYk0pMq24WeanU0Yp98SY+sLRI3tLW1KLJQ0xKjW8DKXeiIFq7jcPoY0RIlLvmkuCnO8qChJMk0ixMXt0ThpJs6PhZM2loyU/wdLIwhLI0i4NGbmsDSCsDSCsDSCsDSCsDSCsDSCsDSCsDSCsDRyAPwCtOiw/jBIBE0AAAAASUVORK5CYII=" InformativeScreenshot="edb5a34ccbe8b45247260fd926b251b3.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='{}' title='PCR Review - Bot_Output - All Documents' /&gt;" SearchSteps="FuzzySelector, Image" />
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                        <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="892,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                        <uix:NKeyboardShortcuts DelayBetweenShortcuts="{x:Null}" ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="892,178" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_1" Shortcuts="[d(hk)][k(down)][u(hk)][d(hk)][k(enter)][u(hk)]" Version="V1" />
+                        <uix:NCheckState Exists="{x:Null}" DisplayName="Check App State 'File &amp;name'" sap:VirtualizedContainerService.HintSize="892,3132" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="9fb67085-17b2-478e-bad9-9d7798faed3c" Version="V1">
+                          <uix:NCheckState.IfExists>
+                            <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="462,2916" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'File &amp;name'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="420,216" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="HardwareEvents" ScopeIdentifier="9fb67085-17b2-478e-bad9-9d7798faed3c" Text="[in_OutputFilePath]" Version="V1">
+                                <uix:NTypeInto.Target>
+                                  <uix:TargetAnchorable DesignTimeRectangle="201, 375, 303, 15" ElementType="InputBox" FriendlyName="'Edit'" FullSelectorArgument="&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;" Guid="1c733d5e-ed86-4bbf-b17e-b60c77d4a5e5" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAATMAAAATCAYAAAD8g+rcAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABYSURBVHhe7dQxEQAwCAAx/JumGx76l4jILECAzICEy2zGa8C/ZAYkyAxIkBmQIDMgQWZAgsyABJkBCTIDEmQGJMgMSJAZkCAzIEFmQILMgASDAQkyAwJ2HwpxoVClF2PGAAAAAElFTkSuQmCC" InformativeScreenshot="48c84a94f9d71ba1244a4ca895a9126b.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='#32770' title='Open' /&gt;" SearchSteps="Selector, FuzzySelector, Image">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target DesignTimeRectangle="138, 374, 54, 15" ElementType="Text" FriendlyName="'File &amp;name'" FullSelectorArgument="&lt;wnd ctrlid='1090' title='File &amp;amp;name:' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1090' title='File &amp;amp;name:' check:text='File &amp;amp;name:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADoAAAATCAYAAADBGB7WAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEJSURBVFhH7VPtEcMgCHUq52Ebh3EXZ3EDKkYTtESTprlrjT/eHSof7wko7z0+AVPoaJhCRwMTahGUQsWgjUPvDGql0bjsk+3/QiW0J2IK/XkcEMrvK5841nnUAW0RR0j+Bsp1SO8WtjVRYMsYu+UG69EZLeYQOdhQTxt02SeguaNUYF8otwNC8oIAz5lFEIHWh6x5Q0wmGmOYuCLHDgfyaQtlQeI9s4ufTFi7IsUK5yRigVCjl+MQhwUXhUrd4eiRzPEOjRZqnMrRxoUdJbvalzfUOdmZj1ckLNXonckWOHx1dOmtHp1To0tdTHEaED7pKJ0lDm2hY+NWoesvC5D878Ts6Gh4iFCPLxfZ80T808SLAAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:NTypeInto.Target>
+                              </uix:NTypeInto>
+                              <uix:NClick ClickType="Single" DisplayName="Click 'unchecked'" sap:VirtualizedContainerService.HintSize="420,156" sap2010:WorkflowViewState.IdRef="NClick_2" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9fb67085-17b2-478e-bad9-9d7798faed3c" Version="V1">
+                                <uix:NClick.Target>
+                                  <uix:TargetAnchorable DesignTimeRectangle="536, 399, 88, 26" ElementType="Button" FriendlyName="'unchecked'" FullSelectorArgument="&lt;wnd ctrlid='1' title='&amp;amp;Open' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1' title='&amp;amp;Open' check:text='unchecked' /&gt;" Guid="a14427ba-98f3-4714-8766-28ae6ac5013c" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFwAAAAeCAYAAAChf3k/AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEzSURBVGhD7ZbBEYQgDEXpiW6oZG+0QitUsWc7sIOsKChB3HFGN8LOP7xDMHB4gT+qcRwJyAHhwkC4MEy4er3BD2COWVFpBtdhjlkRG4ZhADcA4cJAuDAQLgyEC9OucGdIKbWira/3dUabwmfZmqxPa56s/g/pDQpf5BpXrHtLWhly+VqHtCf8UGwYRLr1jkx4AS70ViJnPiPFUTor7rFbVD3xYtoUri353bf85gd5k7TUNwsuhpHiaIqnRWzcY9y6vg1DjjaFn73ha8YP5EwcBrvdkVlyuWd/hgTtCT+V4aWsbM/hwCD8mN1zD3LyzC3q3TBq+Qzh3yn+w/mNX2QZo+vfy1hBpFzlGVl3AOHCQLgwnQrvFwgXBsKFOS0c3AtzzIpKM7gOc5wX4PdAuDAQLspIHzXPr3L4gVkTAAAAAElFTkSuQmCC" InformativeScreenshot="76784951cbea7e552ae87078a5ee7252.png" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='#32770' title='Open' /&gt;" SearchSteps="Selector, FuzzySelector, Image" />
+                                </uix:NClick.Target>
+                              </uix:NClick>
+                              <uix:NCheckState Exists="{x:Null}" DisplayName="Check App State 'Replace'" EnableIfNotExists="False" sap:VirtualizedContainerService.HintSize="420,466" sap2010:WorkflowViewState.IdRef="NCheckState_4" ScopeIdentifier="9fb67085-17b2-478e-bad9-9d7798faed3c" Version="V1">
+                                <uix:NCheckState.IfExists>
+                                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="376,250" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <uix:NClick ClickType="Single" DisplayName="Click 'Keep both'" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NClick_9" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9fb67085-17b2-478e-bad9-9d7798faed3c" Version="V1">
+                                      <uix:NClick.Target>
+                                        <uix:TargetAnchorable BrowserURL="https://realtyincomeo365.sharepoint.com/sites/PCRSummaryofCosts/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x0120007D2F6B3E15B74048B0D9BC6ED7D9A210&amp;id=%2Fsites%2FPCRSummaryofCosts%2FShared%20Documents%2FGeneral%2FBot%5FOutput&amp;viewid=5fb7bf38%2D8d66%2D42db%2Dad9b%2D83d8fdf176d3" DesignTimeRectangle="1528, 580, 185, 30" ElementType="Text" FriendlyName="'Keep both'" FullSelectorArgument="&lt;webctrl parentname='Keep both' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentname='Keep both' tag='SPAN' type='' aaname='Keep both' check:text='Keep both' /&gt;" Guid="f0352bda-8c76-4c37-84f3-13270e95d0d5" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAL0AAAAiCAYAAAAK59imAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIUSURBVHhe7ZxbbsIwEAA5EnCscI+qgtOEm8A1cgfc+LGJ7djIqkgadWeElRo/4o/Z9fLTgwFQxuH6/WVoNE2NTA/qQHpQB9KDOpAe1IH0oA6kB3UgPagD6UEdSA/qQHpQB9KDOnRL/7iac9ebIXQtz9vRnE9X8wz9bRjMvTua2yN0P8Iae/4PkD6Sfui7RRBswwcEHXpzSYIV6WsgvUhu/948wwtIvyVIb6VfCDPjsv/JljyFsscFiox15j5dEQ9zc337LI3niKD+KXvmwqZnOZpLHzZMzjE2t1D2bD2DHpC+60bhyzLk5Y7ri4n5zSAB5DtBtGy8ElgiaCKlC8S574WP1/t3TIFRyfTxGvd75U/Kt32B9KNYl1GOKWtOSKYMXYcVzUtkBUrX2PkiqZ2XB1JpP6E8Nr+jPJ4EYUt58+ZG0wTSu8zns2YqsWTrvFmZvVDLMZGsJL2XOBfXU5fan6m8X3K7IH0zSJ9IE0tipSmIFqgLbNkm07vzy5dI3wzSxzWu7Uey5jV9gptbEyjcEpFxb/cKgi7PMu//25oe6ZcgfSail2uWxWbbpITJRY7Hpr1Cpu+tuDL+TrYgaO9vGz9/ecvk70uEHpnO6gaQvoZu6VejUoPDLkD6VUD6PYP0q4D0ewbpQR1ID+pAelAH0oM6kB7UgfSgDv5VN01dI9PvmVd4ttIy//UaP8vWQuu8fWPMD2nRfCeNW836AAAAAElFTkSuQmCC" InformativeScreenshot="c3dc2c5ed321c565dfcfd1bafd21d485.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='{}' title='PCR Review - Bot_Output - All Documents' /&gt;" SearchSteps="FuzzySelector, Image">
+                                          <uix:TargetAnchorable.Anchors>
+                                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                              <uix:Target DesignTimeRectangle="1511, 579, 219, 32" ElementType="Button" FriendlyName="'Keep both'" FullSelectorArgument="&lt;webctrl name='Keep both' tag='BUTTON' type='button' /&gt;" FuzzySelectorArgument="&lt;webctrl name='Keep both' tag='BUTTON' type='button' aaname='Keep both' check:text='Keep both' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAN8AAAAkCAYAAAAJrO/2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKMSURBVHhe7Z1LcqMwEEDnSE6ORe4xNWUfIN9LkJs4y8wRvBhyAWto/ZCEcKhEoMJ5r6wCuYXQoh8tVvxSAFAF5AOohJfv46NTz08Pav/nN41GW6A9P973nv2zxgXySeDv+7vtAUBpxC8pcA4vn5gJAMsSeoZ8ACuCfACVQD6ASiAfQCWQD6ASyAdQCeQDqATyAVQC+QAqgXwlOe7VbdOqk+0Kb4edur3ZqzfbX4eTem126nC03SIsMefPBvlKksh3apuRjOtQQJRTq+6ihwbylQb5ShLKJ+erVzwH8m0B5CuJk2+UuAO6Gt7IVjSzHdXCulijXn3JPKqD7ssxF09xopijmzMVJ17LTt21dsJoHX3TF7o5564BPgP5SqLla3rx8kmZbkN13xmRVkonsunYhE/iE4I7USI59ANh6BvxwuvNPbygE5UvvEa/z1bZVl8HyFcSLUQvX5+kvop4XOWwXY0kvElmSeT4GhnvZJFxqdC5+Rz52HCPfDx6GMzZdl6o8PA5yFcSX61MFYllctUrbSKVSexxzCV7Tj4jUyqQYVous6b8fFG1Rb7FQb6SjJI3TFZJ3kzCW6ZFEtapfHr97k/kWxzkK0konyD9QJr0nS9Cj51KZFs1g8y/OJcVZbyWYf6vvvMhXzmQrySpfD0myYekleoTbS1TocKYn8tWvlYEcvFLSW9FaU31NePHVTe9XyRWj1+rDiBfaZBvE0y8o8GmQb5NgHzXCPJtAuS7RpAPoBLIB1AJ5AOoBPIBVAL5ACqRle/l6YEPpQAsiP5QyuO97QXydV2nA2ImjUYr36TAdV3mE2FwpZztcS5zxp/P/W/c5jB33E8A+eBbjF0SEe2pIGLaUwH5HEr9B41LyfAX9uU0AAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                                            </scg:List>
+                                          </uix:TargetAnchorable.Anchors>
+                                        </uix:TargetAnchorable>
+                                      </uix:NClick.Target>
+                                    </uix:NClick>
+                                  </Sequence>
+                                </uix:NCheckState.IfExists>
+                                <uix:NCheckState.IfNotExists>
+                                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="250,84" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </Sequence>
+                                </uix:NCheckState.IfNotExists>
+                                <uix:NCheckState.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://realtyincomeo365.sharepoint.com/sites/PCRSummaryofCosts/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x0120007D2F6B3E15B74048B0D9BC6ED7D9A210&amp;id=%2Fsites%2FPCRSummaryofCosts%2FShared%20Documents%2FGeneral%2FBot%5FOutput&amp;viewid=5fb7bf38%2D8d66%2D42db%2Dad9b%2D83d8fdf176d3" DesignTimeRectangle="1528, 540, 185, 30" ElementType="Text" FriendlyName="'Replace'" FullSelectorArgument="&lt;webctrl parentname='Replace' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentname='Replace' tag='SPAN' type='' aaname='Replace' check:text='Replace' /&gt;" Guid="9ddac54b-33fd-4ca1-98f1-21867edf24d6" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAL0AAAAiCAYAAAAK59imAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAL/SURBVHhe7ZxtchoxDIZzo0CPRe7RaeEygZMAxyh3iGt9eFfSer106Ha24/eZemJJtsmPR47507cEQGe8HX98TxgYPQ3c9KA7ID3oDkgPugPSg+6A9KA7ID3oDkgPugPSg+6A9Fvk6yv/8+O/gn5nnW4RSL9FWHSdExsXf/K70e+r0y0C6bcIS67zwmZF2nZD1oD0LW7H9G2/c+Pj/NDiq9zSaX9Il9pxi9KXughnl3JchuYEycm0rJHQU2p5aEaQHM+GmlnLg5Nyvk4H7DpNDbRqKwDpW5D0h3MavHyc00cW/3TT+CX+RHoRYqQmSMzNxO6Ydry4n5G8w+3LhH3u3FjTn2sC6VtE6TP309+67ZekD0NLguQckzUErdNpbU/G5qb15f3VfI7NqfV6Sdn5PwLSt3hC+sf5YJ4/x3TX/LDXPpHcWUF6u273ng6foRtsff+ejlfN8zm7tM979vmnb0grXEW+TKxPh5Zn9lfztE+ny+dmarkVgfQtovQs3ig2C2/qHJe3T5HUvIWoYcbYS38/mYa5/swShwayDfX4TGeWXoTnI0mayV8PKxLNo1U+N61bavuJSj7H5tSFcw2078mlrwDpW7jb1QuczUuXQ3zfk3QqZ2wYgr8TFHmjoIavazruSq32OSqH+wyR61duvHLbUxzls1LFmAIXO2T/lEqeztEpMfmcOZ5d9yKQvoWTytyqjMSuKXiorDXpbVNE6fVLMp9BT5VB+lpziBz+aSWDnzn57TMVdJRTJJwRbKiN64UYG4b1JtbpwLDGrCPm8isC6VtEcSkepKUbOMpoqEk/d9O7PGFFr930Cn1GtVBDxAKQvk1FXPsuj296BzeIlVXkHb9oGrHj5/DesaHkRjdNkZvkwufSGTMNMQHSFyB9i4r0RbQiLzeBPi14FAN178XWnZ3T23xcdzQ1wT9lTM0+i2LNAekLkH4tqg0DtgCkXwtIv1kg/VpA+s0C6UF3QHrQHZAedAekB90B6UF3QHrQHfivujG6G7jpQWek9Btmhr68F7JNzQAAAABJRU5ErkJggg==" InformativeScreenshot="e78a24da54e15d8042f712898d6a9f80.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='{}' title='PCR Review - Bot_Output - All Documents' /&gt;" SearchSteps="FuzzySelector">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target DesignTimeRectangle="1528, 580, 185, 30" ElementType="Text" FriendlyName="'Keep both'" FullSelectorArgument="&lt;webctrl parentname='Keep both' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentname='Keep both' tag='SPAN' type='' aaname='Keep both' check:text='Keep both' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAL0AAAAiCAYAAAAK59imAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIUSURBVHhe7ZxbbsIwEAA5EnCscI+qgtOEm8A1cgfc+LGJ7djIqkgadWeElRo/4o/Z9fLTgwFQxuH6/WVoNE2NTA/qQHpQB9KDOpAe1IH0oA6kB3UgPagD6UEdSA/qQHpQB9KDOnRL/7iac9ebIXQtz9vRnE9X8wz9bRjMvTua2yN0P8Iae/4PkD6Sfui7RRBswwcEHXpzSYIV6WsgvUhu/948wwtIvyVIb6VfCDPjsv/JljyFsscFiox15j5dEQ9zc337LI3niKD+KXvmwqZnOZpLHzZMzjE2t1D2bD2DHpC+60bhyzLk5Y7ri4n5zSAB5DtBtGy8ElgiaCKlC8S574WP1/t3TIFRyfTxGvd75U/Kt32B9KNYl1GOKWtOSKYMXYcVzUtkBUrX2PkiqZ2XB1JpP6E8Nr+jPJ4EYUt58+ZG0wTSu8zns2YqsWTrvFmZvVDLMZGsJL2XOBfXU5fan6m8X3K7IH0zSJ9IE0tipSmIFqgLbNkm07vzy5dI3wzSxzWu7Uey5jV9gptbEyjcEpFxb/cKgi7PMu//25oe6ZcgfSail2uWxWbbpITJRY7Hpr1Cpu+tuDL+TrYgaO9vGz9/ecvk70uEHpnO6gaQvoZu6VejUoPDLkD6VUD6PYP0q4D0ewbpQR1ID+pAelAH0oM6kB7UgfSgDv5VN01dI9PvmVd4ttIy//UaP8vWQuu8fWPMD2nRfCeNW836AAAAAElFTkSuQmCC" SearchSteps="FuzzySelector" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:NCheckState.Target>
+                              </uix:NCheckState>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="420,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;File saved on sharepoint&quot;]" />
+                              <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="420,22" sap2010:WorkflowViewState.IdRef="Delay_3" />
+                              <uix:NClick ClickType="Single" DisplayName="Click 'Modified'" sap:VirtualizedContainerService.HintSize="420,156" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9fb67085-17b2-478e-bad9-9d7798faed3c" Version="V1">
+                                <uix:NClick.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://realtyincomeo365.sharepoint.com/sites/PCRSummaryofCosts/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x0120007D2F6B3E15B74048B0D9BC6ED7D9A210&amp;id=%2Fsites%2FPCRSummaryofCosts%2FShared%20Documents%2FGeneral%2FBot%5FOutput&amp;viewid=5fb7bf38%2D8d66%2D42db%2Dad9b%2D83d8fdf176d3" DesignTimeRectangle="866, 442, 58, 42" ElementType="Text" FriendlyName="'Modified'" FullSelectorArgument="&lt;webctrl id='header68-dateModifiedColumn_509-name' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl id='header68-dateModifiedColumn_509-name' tag='SPAN' type='' aaname='Modified' check:text='Modified' /&gt;" Guid="6734c67b-166c-4e34-b480-31c6d498661f" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAD4AAAAuCAYAAABwF6rfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAANNSURBVGhD7ZXLT1NBFMb9k9T4QBM1ii4kimh8QcEXgmAUUBYCSgTcWB7hYazyquuyALEYWWBKCLgghbQNlCCxEkxIpLQlPEMIHPkOPTdNH5aiu7m/ZNI7d07PN9/Mmbn7SFF046qhG1cN3bhq6MZVQzeuGrpx1dCNq4ZuXDV042tra1RWWkoHD+ynioqXtL6+HhzZYWtri940NfE44hC/F0RHcnjn5uh5WSkNDAwEI4jc4+P0IDeHtbo6O+lzTw9VVVbS0tJSMGL3hOsJUY2npJwnj+dHcGSHue0JGgwZ/934T4+HrlxOI6v1E48vLi5Sfl4e3b1zm6ampmh1dZWam9/zQvh8Po5JhHA9IcI4zKVevEAWiyU4skNv7xdKv3mDsrPvRSRJhFgTEQIBP93KyqTGxobgm38jll6E8ZKSZ9RQX8+rjtUPHftgNkckCQQCZDK9pXNnk7kaDBnp9G1oiI8GQJzZ3E6nTp7g1tLSTMXFT7UcqCxU2MeuLu0ZeUIrD4uAxcCiAGjW1tRoOTHflZUVHounJ0QYR3M6HbzrDoeDx75PTrIwfiUG8RArL39BWZkGGhoc5Em+qqpiQbvdzuZlEh0dFvo1M0PvTCY6cviQliPU+MbGBk1PT/PiVRuNtLCwwO9CjYumHIWRETulXUplnc3Nzbh6QlTjEMQFV1dXy8Jtra3cx3uJQfzo6CgdP5bEpgXE4Dwaja9pfn6eJyh5wPLyMj0pKtJyhBoH0Uo91Dg0YUw2BbS3tbHOzLbReHpCVON4xpnGeZ+YmOBkMBce02O1auUohMZMblcIKkdMgfAciRpHnByF0IZxl8sZV0+IaVxu8cLCAjbu9/sjYv624/j0YceRA89y5mVccuxlx5PPnKbh4WHuS0Ner9cbV0+IaRx/RIljNfGLfngMkj7Mz9POOM4nShyl6HI6udxQduh3d3ezSfRxEUqORI3jkwYjBY8fkdvt5r7NZqP+ftuu9ISYxoHL5eLSwaUGosVgV+WGxSWChRgbG9NWHDdwTXU1JR09QtevXaWvfX385ZAciRoHs7OznAM5oZmbc581QTw9QTOuGrpx1dCNq4ZuXDV046qhG1cN3bhq6MZVQ13jPu9vUrEpuuNEfwCFiHp0FJfP5QAAAABJRU5ErkJggg==" InformativeScreenshot="7e3f90c3b57346a45c59e25c84c641f4.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='{}' title='PCR Review - Bot_Output - All Documents' /&gt;" SearchSteps="FuzzySelector, Image" />
+                                </uix:NClick.Target>
+                              </uix:NClick>
+                              <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="420,22" sap2010:WorkflowViewState.IdRef="Delay_2" />
+                              <uix:NClick ClickType="Single" DisplayName="Click 'Newer to older'" sap:VirtualizedContainerService.HintSize="420,156" sap2010:WorkflowViewState.IdRef="NClick_4" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9fb67085-17b2-478e-bad9-9d7798faed3c" Version="V1">
+                                <uix:NClick.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://realtyincomeo365.sharepoint.com/sites/PCRSummaryofCosts/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x0120007D2F6B3E15B74048B0D9BC6ED7D9A210&amp;isAscending=false&amp;id=%2Fsites%2FPCRSummaryofCosts%2FShared%20Documents%2FGeneral%2FBot%5FOutput&amp;sortField=Modified&amp;viewid=5fb7bf38%2D8d66%2D42db%2Dad9b%2D83d8fdf176d3" DesignTimeRectangle="886, 475, 136, 36" ElementType="Text" FriendlyName="'Newer to older'" FullSelectorArgument="&lt;webctrl parentname='Newer to older' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentname='Newer to older' tag='SPAN' type='' aaname='Newer to older' check:text='Newer to older' /&gt;" Guid="c0552bf5-c5d4-419e-9c74-a35168fe2aea" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAIwAAAAoCAYAAAAsTRLGAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMuSURBVHhe7ZpBbhNBEEVzJOAW5AokHICEA4R9WJN9WJJtOEiuQJZBCEGW3mXQMyn0U66eccfGMNF/UsvV1dU13dXfM2PJe4MxHVgwpgsLxnRhwZguLBjThQVjurBgTBcWjOnCgjFd7N3d3Q1ubus232FMFxaM6cKCMV1YMKYLC8Z08UAwZ2cfhv39l8P19Zd7z29ub38Ob4+PV/xPncViMbw7ORmurq7uPatQs8+Xl/e9p8+KYI6O3iw/lf9VMBxUXus2sWBWWRHMx/Pz4fXhwYMiWTAWTLAiGDZPgRANQoFKMMS8eP5s2eIxVhWYnHqoesgRH3ly3PvT0+V49ZgkNubR4pqslbWHX/dRMRZf7Yd1RSxjrFEFU9UFItfFxaelHxvf3CgFE3YcYBYMRdHC0o8CqCDiMDSWMeKjgHG9fDj4K6Eoei2I60VOwG4dzlR8tSbNhR9hxHz6rbpELp0/R5qCYdMhErVB44AC8E1jnIaND5vYGCMPBeOTPjmjuECBQwDkVzFU5Bg9oCCvXZmKx884cWorWgu1gTmx99b8udEUDGCzya83NytFjNuuNoqhBWc+Pj7DjgPGrnKQm2sQr2KoyDHVnLGDmopXuyU85pNnqi5j65gTo4KJTfIirMUibmzjjPOs5pNCM49vGr7IHz6uUVEdZibHsCbWqzmx41uemYrHjkNWOwhf7GmsLtX8OTIqGKBwvEvo+wSb1md1hvHDg1dLoUEcAj/ZI0cuduYxgmE9f/MdhmtpLvzcQWL+WF1yrrkyKRjAl19A8eltVwsZB6HFycWGiNM8MYf8U4LR+TEv58zXzIzFV4fMmiIWO9esVZcq1xz5Ixj9z4MxLR7cYTbFonv6WDCmi+VfNEEPu9U0LtDx3KbGtWVaMZWfFoyNmc2Z/E8vtPyg/TyuNui4+qfQ+MquxiD3zebsRDBjrUUVqy1Yd8xsh53eYTI5Psh+7asf1h0z2+HRgqHpmNqtfkU1nudN2dUY5L7ZnG7B5P6Yv/K1WqYVU/lpU2NmO2z1Z/W/wKLYLbMWjO8iu2d2glGRWCy7Z/aPJLNb9n58/za4ua3bfIcxHQzDLw7PH6r10yMFAAAAAElFTkSuQmCC" InformativeScreenshot="94d652fb48b4ccbe4705152f1c86a0fa.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='{}' title='PCR Review - Bot_Output - All Documents' /&gt;" SearchSteps="FuzzySelector, Image">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target DesignTimeRectangle="866, 397, 58, 42" ElementType="Text" FriendlyName="'Modified'" FullSelectorArgument="&lt;webctrl id='header59-dateModifiedColumn_508-name' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl id='header59-dateModifiedColumn_508-name' tag='SPAN' type='' aaname='Modified' check:text='Modified' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAD4AAAAuCAYAAABwF6rfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAANZSURBVGhD7ZfLT1NBFMb7J6nxgSZqFF1IFNH4goIvBMEooCwElAi4sTzCw1jlVddlAWIxssCUEHBBCmkbKEFiJZiwoNAS3oTHke/Qubnpw1J0N/NLJr1z53C++WbOzA0GkhRlXDaUcdlQxmVDGZcNZVw2lHHZUMZlQxmXDWV8dXWVSoqL6dDBA1RW9orW19eDI7tsb2/T24YGHkcc4veD0BE5fDMz9KKkmPr6+oIRRJ7RUXqYncVaHe3t9KWriyrKy2lxcTEYsXdC9QQRjSclXSCv92dwZJeZnQkajWn/3fgvr5euXkkhm+0zjy8sLFBuTg7du3uHJiYmaGVlhRobP/BCzM3NcUw8hOoJwozDXPKli2S1WoMju3R3f6XUWzcpM/N+WJJ4iDYRQSDgp9sZ6VRfXxd8829E0wszXlT0nOpqa3nVsfr6sY8WS1iSQCBAZvM7On8ukavBmJZK3wcG+GgAxFksrXT61EluTU2NVFj4TMuBykKFfero0J6RR195WAQsBhYFQLO6qkrLifkuLy/zWCw9QZhxNJfLybvudDp57Mf4OAvjV8QgHmKlpS8pI91IA/39PMnXFRUs6HA42LyYRFublX5PTdF7s5mOHjms5dAb39jYoMnJSV68SpOJ5ufn+Z3euNAUR2FoyEEpl5NZZ2trK6aeIKJxCOKCq6mpZuGW5mbu472IQfzw8DCdOJ7ApgWIwXk0md7Q7OwsT1DkAUtLS/S0oEDLoTcOIpW63jg0YUxsCmhtaWGdqR2jsfQEEY3jGWca531sbIyTwVxoTJfNppWjQB8zvlMhqBxhCoTmiNc44sRR0DeMu92umHqCqMbFLZ6fn8fG/X5/WMzfdhyfPuw4cuBZnHkxLnLsZ8cTz56hwcFB7ouGvD6fL6aeIKpx/CFKHKuJX/RDY5D0UW6OdsZxPlHiKEW3y8XlhrJDv7Ozk02ij4tQ5IjXOD5pMJL35DF5PB7u2+126u2170lPENU4cLvdXDq41ECkGOyquGFxiWAhRkZGtBXHDVxVWUkJx47SjevX6FtPD385RI54jYPp6WnOgZzQzM56wJoglp5AMy4byrhsKOOyoYzLhjIuG8q4bCjjsmHAf1EyNsPm5ibJ2Axra2skY5O31INnXTKI/gCzo4BExMTbMwAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:NClick.Target>
+                              </uix:NClick>
+                              <uix:NClick ClickType="Single" DisplayName="Click 'Name'" sap:VirtualizedContainerService.HintSize="420,156" sap2010:WorkflowViewState.IdRef="NClick_5" KeyModifiers="None" MouseButton="Right" ScopeIdentifier="9fb67085-17b2-478e-bad9-9d7798faed3c" Version="V1">
+                                <uix:NClick.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://realtyincomeo365.sharepoint.com/sites/PCRSummaryofCosts/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x0120007D2F6B3E15B74048B0D9BC6ED7D9A210&amp;isAscending=false&amp;id=%2Fsites%2FPCRSummaryofCosts%2FShared%20Documents%2FGeneral%2FBot%5FOutput&amp;sortField=Modified&amp;viewid=5fb7bf38%2D8d66%2D42db%2Dad9b%2D83d8fdf176d3" DesignTimeRectangle="376, 451, 20, 20" ElementType="Icon" FriendlyName="'IMG'" FuzzySelectorArgument="&lt;webctrl parentid='row1144-0' tag='IMG' type='' aaname='.xlsx' /&gt;" Guid="20443892-aaa0-44b2-9ddb-3839e94d4923" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFBSURBVEhLY3j7+uV/WuJhbsHKFUv/T57YjxfPnD71/+2b17HqB2G8FoAMIARAaubNmYXTEqpYcPvmjf8zpk3BaglVLACBy5cu/V+0YP7/508eoZhBFQt+fP8OZsMsQTYDxQL36dn/BWoc8WKfuQVgw2Bg/9694OABWQTDyGaiWIDNQGwYHyDKAvkWn/8fv3/5bzslBYxBbJAYsgU26yrAGAS8T08AYxAg2geVW6f8P3zv/P8j9y/8z1rbgSKHD5AURPfePgVjdHEQQPYBMptoC0BB8vnH1/+ff35DCR4QxgeItmDrtSP/O/Yt+D/92Jr/W64dRpEDAf0EVzBGZxNlASgpPnr/AuxyEAaxQWLIFuACJMUBLowP4LWAmIzmPQc1o6EDvBagY5BiUsHgsoCYCgcdg/Qgm4HXAmrgoW7By/8ATuSb8T4KzAIAAAAASUVORK5CYII=" InformativeScreenshot="936f319d1e9fb1618cf5727a6d2487cd.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='{}' title='PCR Review - Bot_Output - All Documents' /&gt;" SearchSteps="FuzzySelector, Image">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target DesignTimeRectangle="416, 397, 38, 42" ElementType="Text" FriendlyName="'Name'" FullSelectorArgument="&lt;webctrl id='header59-displayNameColumn_506-name' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl id='header59-displayNameColumn_506-name' tag='SPAN' type='' aaname='Name' check:text='Name' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACoAAAAuCAYAAABeUotNAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJsSURBVFhH7ZTfS1NhGMf7kyrKuqkoU1Ny6fJH9tuiH9pdYmkkaXmXWFpiaHduyYQ0WpBbXrpoMbzYxXYhuWGDTUdzN2Mbgt/6Pu3Iaa0F9hIbvB94Oee8P57zeZ/nPWcXygQtqhotqhotqhotqhotqhotqhotqhotqpryE02n07jX24uK/fvgdrtzvT/Z2Ejg4oXzeDM3l+v5//wmunfPbrSdaUU0Gs2NlKhoa0szrI0NeDY6is3NTRkrSVG2+fn3qDx2FD6fT8byRbPZLOx2OxpOWaQCtSdq4HK5sLW1tT13aOgx7DYbjhw+BIulHktLS9Jamptw8EAFngwPI5VKSTyu++jx4NzZNonHK+eaKSiaTCYxOPgInR035T5flH0vJycRDocRiUTQ03MXdXW1WFn5sj236nilbNjv96P98iXUVFehr+8+lpeX8WJ8XL4Fz+KixPN6P0lipqdfIRaLySaaTlvxdXVVxklBUd5zEidzcSJRvPTMPDPBqyHa3/9AMk+YfYoEg0F55gYt9SclXiaTkQ2Y53PzVmsj3jmd8kz+KEqczrcS8LPX+4soAy4sfEBX120pJbOTLzoy8lTmEq4zMk7MFTLuuT6/mRNTVJRniGW9eqVdXmQsdDgc8szS8RiwdAy8E1Ejow8HBhCPx2XMaIYHKSpKAoEAqn+cL/MOx8aey4spxjLe6e7esShh5Xg0ZmYciK+vS0zb1JQkweCvovwieU7NoqFQCDeuX5O+W50dmJ19/U+i/A1S1viL8EOcnJgonNFSR4uqRouqRouqRouqRouqRouqRouqpnxEv8XXUA6tTETX8B0o3OHA0Qw12wAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:NClick.Target>
+                              </uix:NClick>
+                              <uix:NClick ClickType="Single" DisplayName="Click 'Copy link'" sap:VirtualizedContainerService.HintSize="420,156" sap2010:WorkflowViewState.IdRef="NClick_6" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9fb67085-17b2-478e-bad9-9d7798faed3c" Version="V1">
+                                <uix:NClick.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://realtyincomeo365.sharepoint.com/sites/PCRSummaryofCosts/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x0120007D2F6B3E15B74048B0D9BC6ED7D9A210&amp;isAscending=false&amp;id=%2Fsites%2FPCRSummaryofCosts%2FShared%20Documents%2FGeneral%2FBot%5FOutput&amp;sortField=Modified&amp;viewid=5fb7bf38%2D8d66%2D42db%2Dad9b%2D83d8fdf176d3" DesignTimeRectangle="391, 443, 162, 36" ElementType="Text" FriendlyName="'Copy link'" FullSelectorArgument="&lt;webctrl aaname='Copy link' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;ul&amp;gt;li&amp;gt;button&amp;gt;div&amp;gt;span' parentname='Copy link' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Copy link' type='' parentname='Copy link' tag='SPAN' check:text='Copy link' /&gt;" Guid="5d1894f4-b7d2-4150-9d7a-81942045127c" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAKYAAAAoCAYAAAB0MoHfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKrSURBVHhe7ZpBTuNAEEU50gy3gCsMsIdk9jH7sMW5Awk7wj3sI0xyg0l2yS6NfzPVlJuyQUITytK39ESnq9225Jff7YiTw+EQCPEGxSQuoZjEJRSTuIRiEpdQTOISiklcQjGJSygmcQnFJC6hmMQlFJO45CQ0h1Ug5DuhmMQlSUwKSjzRSkxpz2ZlOP35I4HPMuZYbDZ/w+/xOKzXq9i+urwIdV2bY3Oqqgq3RRF2u51ZJ/5piSkCzGb3rUGPj4tY033/Gy2mVe+DYg6fKCaO/X4fH+bzcmkOPDZfERPJSjGHTfy5CMdq9SeMGxG22405UJBUlWUebUlTkQliyJjz87MkF7YEy6en1nzos7YKmGs8GsX7gmAQra6rWJNEnM8fzO1GnphleR8uL36l+yT+SYkpKYPktAYCkVKnKtoigdS1rCIpPteNMMVkkoRBX1cqSq1LTMgo94Ex+ALIHlSLiW2JviYZBikx8TCLYtIrprVEarks0d6kqmMbklTVq0DWfEKaqycx9XllWSZRpb5YzJu/lHKIpMSETBChbynHg8+X3Tdp6s4ExDmSZljKy39z6P4czPXRUt4nZr7NIMMiJSYeMtKsSxRgJRzad9PppxITn+NedoQx69jfJU6a64uJSTmHSUpMHJAHSZO/oMjPRQAPWgQAaIskUtepquvSh5eRm5vrd9fRiJhdiVnkczbXzMVE/bm5Bl98hkdLTBxYyiGXvO3qlwwg8klNSycyIamkbiUWBMPLCqTT/Rqcg2TtXsrbe0d8GSwxY635IuBe0C/jiW/eiYnDGvgZRMx8j5ljbQkI0RxdTIxBivbtZQk5qphYbrGk6q0BIRb8R2HiEopJXEIxiUsoJnEJxSQuoZjEJRSTuIRiEpdQTOISiklcQjGJSygmccghvADriOTIsEvA0QAAAABJRU5ErkJggg==" InformativeScreenshot="917572ef4a627f1a61df2c60870ac5b6.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='{}' title='PCR Review - Bot_Output - All Documents' /&gt;" SearchSteps="FuzzySelector, Image">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target DesignTimeRectangle="383, 443, 182, 36" ElementType="Button" FriendlyName="'Copy link'" FullSelectorArgument="&lt;webctrl aria-role='menuitem' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;ul&amp;gt;li&amp;gt;button' name='Copy link' tag='BUTTON' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-role='menuitem' type='' name='Copy link' tag='BUTTON' aaname='Get a link that others can use to access the selected item' check:text='Copy link' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAALoAAAAoCAYAAABJoOC5AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAANRSURBVHhe7Zu7bhNBFIZ5AngBeAegQiBRIsgr4EBNbBoK5KWgABkiLsq6pACBhJ0uTgEUNHQ0XioihAK2IktICCtOZ3ce/G84k/Hs7LKxxcU7/0hfPDvneHaLz0dnLOdIb6ertj9/UuPxmJDCAbfhOEUnhYaiEy+g6MQLKDrxAopOvICiEy+g6MQLKDrxAopOvICiEy/Qor94/lTdr911JhGy6GjRHz1YVf1+X2UN1waELAIUnXjBoUWXV0IWiZkquszr9VCdPnVSg2vJ+VsMBrvqeqWiut1OPL+yXFJRFDlzbdrttroVBGo4HDrjpDho0Y/dPK+O3jiXSDCHrIlQ9fraVO76ejOOmWt/GlN0VzwLiu4PhxIdYzQaxXJstlqJ3H/BPKKj8lN0P9Cin318VZ1ZLSUSMMx5p/NVVSZi7e0NpvJspOpLW4O5VHuRE6JJztLSJS0rWqDWxsbUflhztUbYq1Iux88FYSFuFLXjmFTsRuOls72yK3oYrqnl0mX9nKQ4aNHfbr1Xrz68SyTYQ6ogKrudK4jkZtXHXKSSuCm/SI/raCJgUK1qAbGWVrUlliY65JbnQA4+UNLDm6KjDTPvSYqFFn2r90VF2x8TCRjmHHIEQTVTdFdLYMrqEvdA0iieQ7p2e19I136C3iujopvvC8NQiy/xZrMxeaXkRUaL/n33h9r51ksk2ANyQqys1gUi2W3GgYRRaoXGe6TaonUJf+1hrttgr9+1Llmi220VKSZa9Duvn6iHb54lEjDMOaRBtU0TD7gqMOb3arVcFR3X8VmgjJxuvJ4mot5rzopO2YuNFv3E7YvqeHAhkeAakBGV0D4wyteLAOKIUABzkU7iZtU347KGw+HKyrXEfUxE9LSKHth7Tu5pi4745uQePIgWFy163q8XZaB1gazybYZ56AMis8RMiUVOVFKJuyoqhMXhERKb6yZ4Dyp/eusy3Xvjw+USPY5NPlh4FqxLPikGM4uOYefmRUS3e3QbVwtEyCxo0fP8BMAerg3zkEd05KDKZ50FCMnLfyk62gu0EGYrRMg8aNH5jxekyGjR8QcXriRCFh2KTryAohMvoOjECyg68QKKTryAohMvoOjECyg68QKKTryAohMv2Be9q34CzRvxakaQrisAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:NClick.Target>
+                              </uix:NClick>
+                              <uix:NCheckState Exists="{x:Null}" DisplayName="Check App State 'Copy'" EnableIfNotExists="False" sap:VirtualizedContainerService.HintSize="420,825" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="9fb67085-17b2-478e-bad9-9d7798faed3c" Version="V1">
+                                <uix:NCheckState.IfExists>
+                                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="376,609" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <uix:NClick ClickType="Single" DisplayName="Click 'Copy'" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NClick_7" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9fb67085-17b2-478e-bad9-9d7798faed3c" Version="V1">
+                                      <uix:NClick.Target>
+                                        <uix:TargetAnchorable BrowserURL="https://realtyincomeo365.sharepoint.com/sites/PCRSummaryofCosts/_layouts/15/sharedialog.aspx?listId={CE3A2A8A-6254-482E-A75E-D63624D07221}&amp;listItemId=11231&amp;clientId=sharePoint&amp;clickTime=1647428727976&amp;mode=copy&amp;ma=0&amp;fullScreenMode=true&amp;itemName=Capital%20Reserve.xlsx&amp;channelId=3a821455-9aa9-4301-bdc1-0aa72d44cccf&amp;origin=https%3A%2F%2Frealtyincomeo365.sharepoint.com" DesignTimeRectangle="1103, 560, 75, 32" ElementType="Button" FriendlyName="'Copy'" FullSelectorArgument="&lt;webctrl id='shareFrame' tag='IFRAME' /&gt;&lt;webctrl aaname='Copy' tag='BUTTON' /&gt;" FuzzySelectorArgument="&lt;webctrl id='shareFrame' tag='IFRAME' /&gt;&lt;webctrl aaname='Copy' tag='BUTTON' type='button' check:text='Copy' /&gt;" Guid="47691af0-1c46-476d-b455-63ac8dd1ee3f" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAE8AAAAkCAYAAADIB2cfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALlSURBVGhD7ZpNSxtBGMd7Lf0UpZWSb+Ktx97yEdqTt6rk3puCBS/WxFOgYOjJgERRyB5yUDAsLGgIBgaWbGqKicTDv8+8PJtN3ZZ23E1V5g8/ws48u2N+mZc9+Awu1nHy7pFY3o+oi/LKAj5/eOH4DTurb5QnTiyvsvKKCp7fucExS3l1wRhLyEsrdKTDcfIs4Dh5FnCcPAs4Tp4FHCfPAo6TZwHHybOA4+RZwJmTvALqjT1Eo7EZTWaM4Wkxpfbhw5mDvAKOA6EHmQhEQQ1Bq4beZQdReyml/uHDyV1epe7hlp5/K6qol9JrHhucnOUV4KtJ10GwltZv2FhHVwyUZJXJAFHrPSqm/zgYUOMAvcYmwpEuwaRD12+pfxFBXzac4Cz+cQo4u/y1LTs4OctbQk9+2dEhjlP7iZKpoSUtWp9wUCtDXMm9cYzIW1Q1Wh5lRMKOltE8OsRwIht8+PSj7LY6qjs8KphnlhHR9e3F8uxYGcH5//I8X40/bGlRihLNMNnYr2GXrlleLIfYPdXCIi9Rf7mpZmtFPVOgu2OelzGcnOUt4vzOkprlgJfk12T7rPR42SZrjHQlj66bF3K2ynHMVnG1h32uzRhO7gcGL6kbWkLVlP4/zjxRVjNJyxtD1Kf37bf1CR42TNvOHq7ltVfFkD5nnpcxnNzlyVl0rvYwCu1Zol3VrypCYChfVUrrCOX+Fe95m+j19Z4XNvQyne55PoJaEU3Pw7W6x0MzHqeI7pVs4xmY/BuyhTMHeUSpiJO2jxu1yZvQiRp6+iW5srVOwowgGXkwNIp3TtvwlKTpCqohQVvTPVDCs5z3vmRflnDmI++epO55KXxThwgt71p6f1ZwnoS8ytq76VLO8aBgOE9Cnn4Rp/e6/iFONtJrsoTzKOQ9NDhOngUcJ88CjpNnAcfJs4Dj5FnAieWVl90/+vwN2yuvjbGEvO/Cx/bHl6k3ODRfyM+APHFieS7/HifPOsBPZiFjflkYNH4AAAAASUVORK5CYII=" InformativeScreenshot="8fbd1ecdf002309a9f8b4f85461dabbc.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='{}' title='PCR Review - Bot_Output - All Documents' /&gt;" SearchSteps="FuzzySelector, Image">
+                                          <uix:TargetAnchorable.Anchors>
+                                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                              <uix:Target DesignTimeRectangle="1124, 569, 33, 14" ElementType="Text" FriendlyName="'Copy'" FullSelectorArgument="&lt;webctrl id='shareFrame' tag='IFRAME' /&gt;&lt;webctrl id='id__7' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl id='shareFrame' tag='IFRAME' /&gt;&lt;webctrl id='id__7' tag='SPAN' type='' aaname='Copy' check:text='Copy' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACUAAAASCAYAAADc4RcWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAInSURBVEhL7ZRPa+JAGMb33k+Sb+Jtj3vLR9g99dhD7nur0AUvBdOTsGDYk0JJRcEcclCoBAKtiMJAMGKgWvTw9J0/SWaMLLt0K1vowIPMO68zv3nfJ/Ppx7cz/G/6gPpTvRcoC12/g3SzRTm2yMb2Qd7b6QDKwiBmkmPHkMYe4tDDYj5FOjnX8t5WBpTbDbAnnj1roeuYiaeUBmUhEkWaIr40kwxd1TFjKwEvxm6FNPwKV60P4hUFV1j4DSQbmYLdlOafab2GeMkDI9wXl7ZwPzdjGtQ5FnyTTQ+DInYgR+VQa1n4HXdeE2zNvbdFGtREjoSisSGQ/gWG/R6yHQ9EiOiy7XAqlpO+pfZsIqX5/vGiOOfvoIJIbJiFEkDIoYrw4NJDm+Y5VHEoqT2WIGmg5c8borqu2JNhdqP2I2lQNTxUSmvqLm/NTz1uXqZon56jLiOgaD585NXl5yjLrDu4zXNJhtHz0j5TKVtavNDvKsWa4uYSagvWLf93O5FfdOKr2E0HT3wetJDRr7EfyYDit34QHqFBnmCTlnwSGEPGnwSnjoT7o/BUA4ul9FTiy3aVnooQezaGQYAn8Z8Aw+IcG7M1j+UV0xkqUCTHxmgS4VmYUw36wpJAPp7udZ1A1MF8cEP7duXrS8YEIzMohw6+Lj3GlXcl95a+VoV6pY566oh+CfNTm73q2smh3MsvZUsPDJ7r5FDygaZ3adnD6Op4zj+Her3O8ALmMHHj6SvBWgAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
+                                            </scg:List>
+                                          </uix:TargetAnchorable.Anchors>
+                                        </uix:TargetAnchorable>
+                                      </uix:NClick.Target>
+                                    </uix:NClick>
+                                    <uix:NClick ClickType="Single" DisplayName="Click 'Copy'" sap:VirtualizedContainerService.HintSize="334,156" sap2010:WorkflowViewState.IdRef="NClick_8" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="9fb67085-17b2-478e-bad9-9d7798faed3c" Version="V1">
+                                      <uix:NClick.Target>
+                                        <uix:TargetAnchorable BrowserURL="https://realtyincomeo365.sharepoint.com/sites/PCRSummaryofCosts/_layouts/15/sharedialog.aspx?listId={CE3A2A8A-6254-482E-A75E-D63624D07221}&amp;listItemId=11231&amp;clientId=sharePoint&amp;clickTime=1647428727976&amp;mode=copy&amp;ma=0&amp;fullScreenMode=true&amp;itemName=Capital%20Reserve.xlsx&amp;channelId=3a821455-9aa9-4301-bdc1-0aa72d44cccf&amp;origin=https%3A%2F%2Frealtyincomeo365.sharepoint.com" DesignTimeRectangle="1103, 560, 75, 32" ElementType="Button" FriendlyName="'Copy'" FullSelectorArgument="&lt;webctrl id='shareFrame' tag='IFRAME' /&gt;&lt;webctrl aaname='Copy' tag='BUTTON' /&gt;" FuzzySelectorArgument="&lt;webctrl id='shareFrame' tag='IFRAME' /&gt;&lt;webctrl aaname='Copy' tag='BUTTON' type='button' check:text='Copy' /&gt;" Guid="47691af0-1c46-476d-b455-63ac8dd1ee3f" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAE8AAAAkCAYAAADIB2cfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALlSURBVGhD7ZpNSxtBGMd7Lf0UpZWSb+Ktx97yEdqTt6rk3puCBS/WxFOgYOjJgERRyB5yUDAsLGgIBgaWbGqKicTDv8+8PJtN3ZZ23E1V5g8/ws48u2N+mZc9+Awu1nHy7pFY3o+oi/LKAj5/eOH4DTurb5QnTiyvsvKKCp7fucExS3l1wRhLyEsrdKTDcfIs4Dh5FnCcPAs4Tp4FHCfPAo6TZwHHybOA4+RZwJmTvALqjT1Eo7EZTWaM4Wkxpfbhw5mDvAKOA6EHmQhEQQ1Bq4beZQdReyml/uHDyV1epe7hlp5/K6qol9JrHhucnOUV4KtJ10GwltZv2FhHVwyUZJXJAFHrPSqm/zgYUOMAvcYmwpEuwaRD12+pfxFBXzac4Cz+cQo4u/y1LTs4OctbQk9+2dEhjlP7iZKpoSUtWp9wUCtDXMm9cYzIW1Q1Wh5lRMKOltE8OsRwIht8+PSj7LY6qjs8KphnlhHR9e3F8uxYGcH5//I8X40/bGlRihLNMNnYr2GXrlleLIfYPdXCIi9Rf7mpZmtFPVOgu2OelzGcnOUt4vzOkprlgJfk12T7rPR42SZrjHQlj66bF3K2ynHMVnG1h32uzRhO7gcGL6kbWkLVlP4/zjxRVjNJyxtD1Kf37bf1CR42TNvOHq7ltVfFkD5nnpcxnNzlyVl0rvYwCu1Zol3VrypCYChfVUrrCOX+Fe95m+j19Z4XNvQyne55PoJaEU3Pw7W6x0MzHqeI7pVs4xmY/BuyhTMHeUSpiJO2jxu1yZvQiRp6+iW5srVOwowgGXkwNIp3TtvwlKTpCqohQVvTPVDCs5z3vmRflnDmI++epO55KXxThwgt71p6f1ZwnoS8ytq76VLO8aBgOE9Cnn4Rp/e6/iFONtJrsoTzKOQ9NDhOngUcJ88CjpNnAcfJs4Dj5FnAieWVl90/+vwN2yuvjbGEvO/Cx/bHl6k3ODRfyM+APHFieS7/HifPOsBPZiFjflkYNH4AAAAASUVORK5CYII=" InformativeScreenshot="8fbd1ecdf002309a9f8b4f85461dabbc.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='{}' title='PCR Review - Bot_Output - All Documents' /&gt;" SearchSteps="FuzzySelector, Image">
+                                          <uix:TargetAnchorable.Anchors>
+                                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                              <uix:Target DesignTimeRectangle="1124, 569, 33, 14" ElementType="Text" FriendlyName="'Copy'" FullSelectorArgument="&lt;webctrl id='shareFrame' tag='IFRAME' /&gt;&lt;webctrl id='id__7' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl id='shareFrame' tag='IFRAME' /&gt;&lt;webctrl id='id__7' tag='SPAN' type='' aaname='Copy' check:text='Copy' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACUAAAASCAYAAADc4RcWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAInSURBVEhL7ZRPa+JAGMb33k+Sb+Jtj3vLR9g99dhD7nur0AUvBdOTsGDYk0JJRcEcclCoBAKtiMJAMGKgWvTw9J0/SWaMLLt0K1vowIPMO68zv3nfJ/Ppx7cz/G/6gPpTvRcoC12/g3SzRTm2yMb2Qd7b6QDKwiBmkmPHkMYe4tDDYj5FOjnX8t5WBpTbDbAnnj1roeuYiaeUBmUhEkWaIr40kwxd1TFjKwEvxm6FNPwKV60P4hUFV1j4DSQbmYLdlOafab2GeMkDI9wXl7ZwPzdjGtQ5FnyTTQ+DInYgR+VQa1n4HXdeE2zNvbdFGtREjoSisSGQ/gWG/R6yHQ9EiOiy7XAqlpO+pfZsIqX5/vGiOOfvoIJIbJiFEkDIoYrw4NJDm+Y5VHEoqT2WIGmg5c8borqu2JNhdqP2I2lQNTxUSmvqLm/NTz1uXqZon56jLiOgaD585NXl5yjLrDu4zXNJhtHz0j5TKVtavNDvKsWa4uYSagvWLf93O5FfdOKr2E0HT3wetJDRr7EfyYDit34QHqFBnmCTlnwSGEPGnwSnjoT7o/BUA4ul9FTiy3aVnooQezaGQYAn8Z8Aw+IcG7M1j+UV0xkqUCTHxmgS4VmYUw36wpJAPp7udZ1A1MF8cEP7duXrS8YEIzMohw6+Lj3GlXcl95a+VoV6pY566oh+CfNTm73q2smh3MsvZUsPDJ7r5FDygaZ3adnD6Op4zj+Her3O8ALmMHHj6SvBWgAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
+                                            </scg:List>
+                                          </uix:TargetAnchorable.Anchors>
+                                        </uix:TargetAnchorable>
+                                      </uix:NClick.Target>
+                                    </uix:NClick>
+                                    <ui:GetFromClipboard TimeoutMS="{x:Null}" DisplayName="Get From Clipboard" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="GetFromClipboard_1">
+                                      <ui:GetFromClipboard.Result>
+                                        <OutArgument x:TypeArguments="x:String">[strSharepointFileLink]</OutArgument>
+                                      </ui:GetFromClipboard.Result>
+                                    </ui:GetFromClipboard>
+                                    <Assign sap:VirtualizedContainerService.HintSize="334,61" sap2010:WorkflowViewState.IdRef="Assign_1">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[strSharepointFileLink]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[out_OutFileSummarySharepointFile]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Sequence>
+                                </uix:NCheckState.IfExists>
+                                <uix:NCheckState.IfNotExists>
+                                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="250,84" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </Sequence>
+                                </uix:NCheckState.IfNotExists>
+                                <uix:NCheckState.Target>
+                                  <uix:TargetAnchorable BrowserURL="https://realtyincomeo365.sharepoint.com/sites/PCRSummaryofCosts/_layouts/15/sharedialog.aspx?listId={CE3A2A8A-6254-482E-A75E-D63624D07221}&amp;listItemId=11231&amp;clientId=sharePoint&amp;clickTime=1647428727976&amp;mode=copy&amp;ma=0&amp;fullScreenMode=true&amp;itemName=Capital%20Reserve.xlsx&amp;channelId=3a821455-9aa9-4301-bdc1-0aa72d44cccf&amp;origin=https%3A%2F%2Frealtyincomeo365.sharepoint.com" DesignTimeRectangle="1103, 560, 75, 32" ElementType="Button" FriendlyName="'Copy'" FullSelectorArgument="&lt;webctrl id='shareFrame' tag='IFRAME' /&gt;&lt;webctrl aaname='Copy' tag='BUTTON' /&gt;" FuzzySelectorArgument="&lt;webctrl id='shareFrame' tag='IFRAME' /&gt;&lt;webctrl aaname='Copy' tag='BUTTON' type='button' check:text='Copy' /&gt;" Guid="227dc800-64c5-49ef-909a-96c3bc6f3b98" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAE8AAAAkCAYAAADIB2cfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALlSURBVGhD7ZpNSxtBGMd7Lf0UpZWSb+Ktx97yEdqTt6rk3puCBS/WxFOgYOjJgERRyB5yUDAsLGgIBgaWbGqKicTDv8+8PJtN3ZZ23E1V5g8/ws48u2N+mZc9+Awu1nHy7pFY3o+oi/LKAj5/eOH4DTurb5QnTiyvsvKKCp7fucExS3l1wRhLyEsrdKTDcfIs4Dh5FnCcPAs4Tp4FHCfPAo6TZwHHybOA4+RZwJmTvALqjT1Eo7EZTWaM4Wkxpfbhw5mDvAKOA6EHmQhEQQ1Bq4beZQdReyml/uHDyV1epe7hlp5/K6qol9JrHhucnOUV4KtJ10GwltZv2FhHVwyUZJXJAFHrPSqm/zgYUOMAvcYmwpEuwaRD12+pfxFBXzac4Cz+cQo4u/y1LTs4OctbQk9+2dEhjlP7iZKpoSUtWp9wUCtDXMm9cYzIW1Q1Wh5lRMKOltE8OsRwIht8+PSj7LY6qjs8KphnlhHR9e3F8uxYGcH5//I8X40/bGlRihLNMNnYr2GXrlleLIfYPdXCIi9Rf7mpZmtFPVOgu2OelzGcnOUt4vzOkprlgJfk12T7rPR42SZrjHQlj66bF3K2ynHMVnG1h32uzRhO7gcGL6kbWkLVlP4/zjxRVjNJyxtD1Kf37bf1CR42TNvOHq7ltVfFkD5nnpcxnNzlyVl0rvYwCu1Zol3VrypCYChfVUrrCOX+Fe95m+j19Z4XNvQyne55PoJaEU3Pw7W6x0MzHqeI7pVs4xmY/BuyhTMHeUSpiJO2jxu1yZvQiRp6+iW5srVOwowgGXkwNIp3TtvwlKTpCqohQVvTPVDCs5z3vmRflnDmI++epO55KXxThwgt71p6f1ZwnoS8ytq76VLO8aBgOE9Cnn4Rp/e6/iFONtJrsoTzKOQ9NDhOngUcJ88CjpNnAcfJs4Dj5FnAieWVl90/+vwN2yuvjbGEvO/Cx/bHl6k3ODRfyM+APHFieS7/HifPOsBPZiFjflkYNH4AAAAASUVORK5CYII=" InformativeScreenshot="1004040d0cb0e68060a8cf745bd19aae.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='{}' title='PCR Review - Bot_Output - All Documents' /&gt;" SearchSteps="FuzzySelector">
+                                    <uix:TargetAnchorable.Anchors>
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                        <uix:Target DesignTimeRectangle="1124, 569, 33, 14" ElementType="Text" FriendlyName="'Copy'" FullSelectorArgument="&lt;webctrl id='shareFrame' tag='IFRAME' /&gt;&lt;webctrl id='id__7' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl id='shareFrame' tag='IFRAME' /&gt;&lt;webctrl id='id__7' tag='SPAN' type='' aaname='Copy' check:text='Copy' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACUAAAASCAYAAADc4RcWAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAInSURBVEhL7ZRPa+JAGMb33k+Sb+Jtj3vLR9g99dhD7nur0AUvBdOTsGDYk0JJRcEcclCoBAKtiMJAMGKgWvTw9J0/SWaMLLt0K1vowIPMO68zv3nfJ/Ppx7cz/G/6gPpTvRcoC12/g3SzRTm2yMb2Qd7b6QDKwiBmkmPHkMYe4tDDYj5FOjnX8t5WBpTbDbAnnj1roeuYiaeUBmUhEkWaIr40kwxd1TFjKwEvxm6FNPwKV60P4hUFV1j4DSQbmYLdlOafab2GeMkDI9wXl7ZwPzdjGtQ5FnyTTQ+DInYgR+VQa1n4HXdeE2zNvbdFGtREjoSisSGQ/gWG/R6yHQ9EiOiy7XAqlpO+pfZsIqX5/vGiOOfvoIJIbJiFEkDIoYrw4NJDm+Y5VHEoqT2WIGmg5c8borqu2JNhdqP2I2lQNTxUSmvqLm/NTz1uXqZon56jLiOgaD585NXl5yjLrDu4zXNJhtHz0j5TKVtavNDvKsWa4uYSagvWLf93O5FfdOKr2E0HT3wetJDRr7EfyYDit34QHqFBnmCTlnwSGEPGnwSnjoT7o/BUA4ul9FTiy3aVnooQezaGQYAn8Z8Aw+IcG7M1j+UV0xkqUCTHxmgS4VmYUw36wpJAPp7udZ1A1MF8cEP7duXrS8YEIzMohw6+Lj3GlXcl95a+VoV6pY566oh+CfNTm73q2smh3MsvZUsPDJ7r5FDygaZ3adnD6Op4zj+Her3O8ALmMHHj6SvBWgAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector" />
+                                      </scg:List>
+                                    </uix:TargetAnchorable.Anchors>
+                                  </uix:TargetAnchorable>
+                                </uix:NCheckState.Target>
+                              </uix:NCheckState>
+                            </Sequence>
+                          </uix:NCheckState.IfExists>
+                          <uix:NCheckState.IfNotExists>
+                            <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="376,185" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[&quot;Unable to save on sharepoint&quot;]" />
+                            </Sequence>
+                          </uix:NCheckState.IfNotExists>
+                          <uix:NCheckState.Target>
+                            <uix:TargetAnchorable DesignTimeRectangle="201, 375, 303, 15" ElementType="InputBox" FriendlyName="'Edit'" FullSelectorArgument="&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;&lt;wnd ctrlid='1148' /&gt;" Guid="fb560d46-ffab-4ede-b12c-ceb228e87df7" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAgYAAAATCAYAAADru8WhAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABiSURBVHhe7dYxEQAwCAAx/JumC/cmmqjILADAEQMAIMVgxhEA4HdiAABEDACAiAEAEDEAACIGAEDEAACIGAAAEQMAIGIAAEQMAICIAQAQMQAAIgYAQMQAAIgNAAARAwDg7D5uVApdcH5/QQAAAABJRU5ErkJggg==" InformativeScreenshot="75025302d1e8cae56d13e251a5df1d52.png" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='chrome.exe' cls='#32770' title='Open' /&gt;" SearchSteps="Selector, FuzzySelector">
+                              <uix:TargetAnchorable.Anchors>
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                  <uix:Target DesignTimeRectangle="138, 374, 54, 15" ElementType="Text" FriendlyName="'File &amp;name'" FullSelectorArgument="&lt;wnd ctrlid='1090' title='File &amp;amp;name:' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1090' title='File &amp;amp;name:' check:text='File &amp;amp;name:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADoAAAATCAYAAADBGB7WAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEJSURBVFhH7VPtEcMgCHUq52Ebh3EXZ3EDKkYTtESTprlrjT/eHSof7wko7z0+AVPoaJhCRwMTahGUQsWgjUPvDGql0bjsk+3/QiW0J2IK/XkcEMrvK5841nnUAW0RR0j+Bsp1SO8WtjVRYMsYu+UG69EZLeYQOdhQTxt02SeguaNUYF8otwNC8oIAz5lFEIHWh6x5Q0wmGmOYuCLHDgfyaQtlQeI9s4ufTFi7IsUK5yRigVCjl+MQhwUXhUrd4eiRzPEOjRZqnMrRxoUdJbvalzfUOdmZj1ckLNXonckWOHx1dOmtHp1To0tdTHEaED7pKJ0lDm2hY+NWoesvC5D878Ts6Gh4iFCPLxfZ80T808SLAAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector" />
+                                </scg:List>
+                              </uix:TargetAnchorable.Anchors>
+                            </uix:TargetAnchorable>
+                          </uix:NCheckState.Target>
+                        </uix:NCheckState>
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="250,84" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="https://realtyincomeo365.sharepoint.com/sites/PCRSummaryofCosts/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x0120007D2F6B3E15B74048B0D9BC6ED7D9A210&amp;id=%2Fsites%2FPCRSummaryofCosts%2FShared%20Documents%2FGeneral%2FBot%5FOutput&amp;viewid=5fb7bf38%2D8d66%2D42db%2Dad9b%2D83d8fdf176d3" DesignTimeRectangle="297, 111, 78, 48" ElementType="Text" FriendlyName="'SharePoint'" FullSelectorArgument="&lt;webctrl parentid='O365_AppName' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='O365_AppName' tag='SPAN' type='' aaname='SharePoint' check:text='SharePoint' /&gt;" Guid="6a35443d-fa00-4670-b821-b60dd8cd5f64" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFIAAAA0CAYAAAAZgW/cAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPmSURBVHhe7Zwhc+MwEIX7e9u/4MAeTWZSatADKTBoaUACQgIcIGKQ3p2JgYiJgYnJu5WltR3XadN2O9eb2Z15ILIsrz7prTTTmV5BQySufv3+A9XndXVzfQ3V56UghaQghaQghaQghaQghaQghaQghaQghaQghaQghaQghaQghaQghaQghaQghaQghaQghfROkHtY9weK+ohk8vn/ogTPtZtIicN86vn7dQoyirHNLOrGfYSjQWni0Odfg2QAw2hQ2wzbOJrof04Jssq9arGXB7nE3gaCTQVrrVdZo8qS0Oe7gGxQcX4V51xgG029I6kY+7yijUYLMHrWg4wzuEUiavg56HCq7wJyOJEI69zDLM180PcrNPV9rx7k3FDFoGhyrM+ubA9yuzmi5BLQlMiS3lqLxKCoBh5sath0hRmPs29HQV1kKEI3u/fPfqxS2EFtqUv61jK8d24iPN7RO2cWb5DZmvYtB7mqSPHQzevlOMnRJ+LyPNC7HHWxw53rkxxplHH07w+sHWFbsE0qFGmCxQugASSl2Lg+mcEzWd835XgK/ZIjbf8yR5amOJgc3n0N8scwTpi4a7Np3AGecbK19e+6et3+ZgdMg1yYdguQmaiWLynH8L2KFuqQ0mIF+zd276G8ArJpfM09ZEXIm3Z6Sjt9nmBHY/mxK+Quv3Tduff0sLm+xUMakm+jRrHrJ9qDrJDdcxsnVeN55dtm0WnhP5moa2OQpcGi6zfHoe1WYDdYQG9bWoS1+z0GELW73zvD5/TU2XzZjXFzfe8PF5djMjXOAGS+7heW8yw2YZzphXQagQy6vcfaMFDaNXtOarpG+u9xks5aa5jcoiSL0gJ3wdYbW9GLF2k6vPV5IuPgHFfhOV1rRm7qrHsyzkuQXGJasUNoJ/u294JkLUPd7MBdAHIerNVan7b/7hFx2JEXgaxzusrEiEe6u3V9eCLh1C6OMOkOyZwd8B1AkkVys8KPwcObaEdGo3AHUNt2AcgJSJzk6yDjgf3O3QnPT4S1bRN2dW1o7SWMv5KEkvSlIMNL3R2y9L8p3IR93bgA5CbMhE7yZyrIJqdxgr9fB0m1lNpDT9ijoWKeInPvF29PpNO98dc4t2vHhw3VOj+Pj4KcI5irPZAMOYLf70FGdOwX7rLpO7poand6D3fpBSBp9bd0aeVhmjJDQgeYi7dAusMj3tEpzyvoor06cb8LQJJmdIV6cf3KNuHEdvooSHezyAbXPipDof31Gqm6WApSSApSSApSSApSSApSSApSSApSSApSSApSSApSSApSSApSSApSSApSSApSSApSSApSSPofBIRCQYoE8BcBBga7ZBLqqwAAAABJRU5ErkJggg==" InformativeScreenshot="212af1365fd42337b81bed6fb1957f4b.png" ScopeSelectorArgument="&lt;html app='chrome.exe' htmlwindowname='{}' title='PCR Review - Bot_Output - All Documents' /&gt;" SearchSteps="FuzzySelector" />
+                    </uix:NCheckState.Target>
+                  </uix:NCheckState>
+                </Sequence>
+              </ActivityAction>
+            </uix:NApplicationCard.Body>
+            <uix:NApplicationCard.TargetApp>
+              <uix:TargetApp Area="-8, -8, 1936, 967" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAXpSURBVFhH1ZZvVFNlHMdvvvJlKoiYpmm9qHd1ynMGg93BgE02/rPJAJkYZacXmXVK046cOscwQ8FMqyVjgJZGLTXziHlESZDBIFOTjbGNbTQHnQyGHhPw1/PcPZc9u2xi9qZ+53zOHZd7n8/3+T33uRvzvymorJzjLJCzriLVXpda2ebSZNpdGlXAoVYGXIWKfvS/C4hap0oqwdeS2/59OXXsXHdJzrsubdbwQG4aTJMjC5KdwmHPkoJdFcRZkOFHobbie8kwD1euYpUWzdg7kJ8BHHnpQWaESA0LYFeyCAk48tI8zmxWQ4Z78AKAR1wludUO9WpwFCgQ8lAAYReQfEYXSAB7ZjJCgu5L24nHJMPfv/CFA0U5Jk5eiOWKoDxaB2YLsDqIIzvt6wcK8YtavrsPDc7JSYCwDtABsJwKESYXBOhXiMGZK6simshVv0GVfwndeDVXBrb89HB51CWgZh9xCUIBMI5McSHRhddyg25uVk3Z0Gm5GLrRANez0MBIGDXA9MzJAyiU0x1QJAUDyBNhQCVxR9wdTx15ZdvKQy/BpleV0KZIhstoQCvqhFBsRzi3bwbvsWYY7rUEblg7A15z82178xs3r9eIblg/Fvms+0Q++75E3+CBhCGPXuT16kUef53YM2JMdP/RkOAeMYq3E22wKqFyzpNfbhhecagCVu0vg0ZFAnSi1NdQF+xYTujXqcF37gyMjo6C1T0GpyxB8Gd8bsTWAl6TEoaaE8BnSoSb34vh1plkuHMuGSbPI9oQF5Ng6qLUD8hJ9Kj9hyskTzRVAI9ucy6cTE8EC9pCfXgp8MzXqeGm1wP93lF4sykAqo/Gp1HuGodNDQGweUbhz989MN6WD/faU2CqIwXuXUoBMKcCdKGjBR050OduVkz0DLPyq5drljWuh+VNL3I8bVgPNXkS+DFDBJdVLNjQevtbz0I/EqhrQ2I6QCYir2acCzHmPYsk6QA9mDSCLAgf4OeMaqJnmBWHKy7gADSqHRo4LhNBW4YYbNvf4lqMZ55VHS7HYszqD4O8jjqBr71zbYsgAAmB5Zhe2TmiZ5jHG8v7hQEw28rT4bRsFbiPf8OtMy3Gs+ZnTgdQ7ByHPnTt+OC34fLp9pMO9KRaiZ5hljWtD0QKkFhbDCbZC+Azd3AP22xyPsDJrjEYG2oPD0C3nwuQEiB61AEUAHUBaJY2rOOo2JQJQ53tcKp77L5iHnnEAIL155COET3DLG0qt/HCJeTI84y+DK6cCC7BbDPH4AB9g2gJXKbwANNiQk9KaAmWNpafx2IaOtD7De9xDxbearSUFvPyjUbyEP66lZo1PXOMFP2PDT2EqAN7HjPqICr1ZVMdzis+vMXy9oQH4ENgec5utA3do3DdYRmGngxBgLD2w5SF3UX0DBNfX5YslC42lnHwn587uhEGR37j9jneavSs+ZljufOGF4bMpZPRxEFY9B6QhV5E+FW82KjzxyMRDx+APvfskdfghK2DazHeavhhw+A1x+eOXf0Jak9UoJmjdZ8h5wOwMNUteBXjijfq3sGSRfVrOWgxfz6uvhRQt6C0pRqMV85Aq7OXo+FyC5SYqmDJXg3cNsuRRCjm5XwA9m2iDRX+Oo43rvXwAbAMI/ybZyEh1lACCw9oIXbvGjD9kE2te6QASN7FusGpi/xjNba+RC0U0YRJyTHGUAwxn2jg+c80MNmjEEhDYp7JLraA6CLXorq1VbyIBstoMc8CvRZi9mugt1WJBMJ1D7UdM2GW7iCa6IV/OMbVaY/SEhpuxoQFdQh9EWgb0devRfiy4eXBAHfN0iP/6JdxnKH0g9i6cCENJ0fM/1QD/na69bRYCve60cy7pTseWE7XfIO2MPag1s3LOGGddpp5B4ug6lguEvFtp+Vo1p0S96xrPlvh3bHgi+ItMXqtH0vpEHF6DdzqUkyEi6Uw0Snx/3WJ3Rz1aX+Ywi+refo1STEGbXXMwaLWRz/XWL9ryfbc7WQDaH2td81sK2p19YQlNWnGS+a/WwzzN8pWpGcXa7w4AAAAAElFTkSuQmCC" InformativeScreenshot="e0143a4248643fb387f93eb97db33a97.png" Selector="&lt;html app='chrome.exe' htmlwindowname='{}' title='PCR Review - Bot_Output - All Documents'/&gt;" Url="[in_SharepointFolder]" />
+            </uix:NApplicationCard.TargetApp>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </uix:NApplicationCard>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+  </Sequence>
+</Activity>
